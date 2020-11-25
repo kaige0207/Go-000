@@ -92,22 +92,29 @@
 
    1. 康威定律
 
-   2. Envoy
+      康威定律是马尔文·康威1967提出的：“设计系统的架构受制于产生这些设计的组织的沟通结构。”通俗的来讲：产品必然是其（人员）组织沟通结构的缩影。
 
-   3. BFF，Backend for Frontend
-
-      
-
-   4. SSR ， Server-Side Rendering
-
-   5. DDD，Domain Driven Design
-
-   6. CQRS
-
+      - 第一定律 组织沟通方式会通过系统设计表达出来。
+   - 第二定律 时间再多一件事情也不可能做的完美，但总有时间做完一件事情。
+      - 第三定律 线型系统和线型组织架构间有潜在的异质同态特性。
+   - 第四定律 大的系统组织总是比小系统更倾向于分解。
+   
+2. Envoy
+   
+3. BFF，Backend for Frontend
+   
+   
+   
+4. SSR ， Server-Side Rendering
+   
+5. DDD，Domain Driven Design
+   
+6. CQRS
+   
    7. Sevice Mesh
-
+   
    8. JWT
-
+   
    9. GitLab和GitHub
-
+   
    10. protocol buffer
