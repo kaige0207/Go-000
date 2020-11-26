@@ -157,9 +157,11 @@ GitLab和GitHub一样属于第三方基于Git开发的作品，免费且开源�
 
 是一种支持多平台、多语言、可扩展的的数据序列化机制，相较于XML来说，protobuf更小更快更简单，支持自定义的数据结构，用protobuf编译器生成特定语言的源代码，如C++、Java、Python，Go等。目前protoBuf对主流的编程语言都提供了支持,非常方便的进行序列化和反序列化。
 
-### Provider
+### CAP
 
-### Euerka
+CAP原则又称CAP定理，指的是在一个分布式系统中，**一致性**（Consistency）、**可用性**（Availability）、**分区容错性**（Partition tolerance）。CAP 原则指的是，这三个要素最多只能同时实现两点，不可能三者兼顾。
+
+
 
 
 
