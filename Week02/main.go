@@ -4,35 +4,37 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/pkg/errors"
-	"log"
 )
+/*
+	题目：我们在数据库操作的时候，比如dao 层中当遇到一个sql.ErrNoRows的时候，是否应该 Wrap 这个error，抛给上层。为什么，应该怎么做请写出代码？
+	回答：应该和其它错误一样 Wrap 向上抛给调用者。这样上层业务可以得到堆栈信息，然后利用 error.Is()方法判断是否是sql.ErrNoRows错误，进行处理
+ */
+
 
 type User struct {
-	Id 	 int
+	Id 	 uint
 	Name string
 }
 
-func (u *User) DbNoDataError() (*User,error) {
-
-	return u,sql.ErrNoRows
+//执行数据库查询的函数
+func getUserFromDb() (*User,error) {
+	//TODO
+	//省略数据库逻辑，直接返回sql.ErrNoRows
+	return &User{}, sql.ErrNoRows
 }
 
 //dao层处理逻辑
-func (u *User) DaoFindUserById(uid int) (*User,error) {
-	if _,err := u.DbNoDataError(); err != nil{
-		fmt.Errorf("accessing DB: %w", err)
-		return nil,err
+func (u *User) DaoFindUserById(uid uint) (*User, error) {
+	user,err := getUserFromDb()
+	if err != nil{
+		return user,errors.Wrap(err,"xxx")
 	}
-	return u, nil
+	return user, nil
 }
 
 //biz层处理逻辑
-func BizFindUserById(uid int) (*User,error) {
-	user := &User{Id:uid}
-	user, err := user.DaoFindUserById(uid)
-	if err != nil {
-		return nil, errors.WithMessagef(err, "biz query user: %d detail", uid)
-	}
+func BizFindUserById(uid uint) (*User,error) {
+	var user User
 	return user.DaoFindUserById(uid)
 }
 
@@ -41,14 +43,14 @@ func main() {
 	user, err := BizFindUserById(1)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			log.Printf("use not exists %+v\n", err)
+			fmt.Printf("use not exists %+v\n", err)
 			return
 		}
 
-		log.Printf("query user detail failed: %+v\n", err)
+		fmt.Printf("query user detail failed: %+v\n", err)
 		return
 	}
 
-	log.Printf("user info: %+v\n", user)
+	fmt.Printf("user info: %+v\n", user)
 
 }
