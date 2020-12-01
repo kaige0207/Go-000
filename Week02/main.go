@@ -27,7 +27,8 @@ func getUserFromDb() (*User,error) {
 func (u *User) DaoFindUserById(uid uint) (*User, error) {
 	user,err := getUserFromDb()
 	if err != nil{
-		return user,errors.Wrap(err,"xxx")
+		//return user,errors.Wrap(err,"dao error")
+		return user,errors.Wrap(err, fmt.Sprintf("dao error : find user by id=%v", uid))
 	}
 	return user, nil
 }
@@ -43,7 +44,7 @@ func main() {
 	user, err := BizFindUserById(1)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			fmt.Printf("use not exists %+v\n", err)
+			fmt.Printf("user not exists %+v\n", err)
 			return
 		}
 
