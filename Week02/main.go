@@ -41,7 +41,7 @@ func main() {
 	user, err := BizFindUserById(1234567)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			fmt.Printf("user not exists %+v\n", err)
+			fmt.Printf("user not exists: %+v\n", err)
 			return
 		}
 
@@ -49,6 +49,6 @@ func main() {
 		return
 	}
 
-	fmt.Printf("query user success : user=%+v\n", user)
+	fmt.Printf("query user success: user=%+v\n", user)
 
 }
