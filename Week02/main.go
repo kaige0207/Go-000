@@ -17,41 +17,38 @@ type User struct {
 }
 
 //执行数据库查询的函数
-func getUserFromDb() (*User,error) {
+func DaogetUserFromDb() (*User,error) {
 	//TODO
 	//省略数据库逻辑，直接返回sql.ErrNoRows
 	return &User{}, sql.ErrNoRows
 }
 
 //dao层处理逻辑
-func (u *User) DaoFindUserById(uid uint) (*User, error) {
-	user,err := getUserFromDb()
+func DaoFindUserById(uid uint) (*User, error) {
+	user,err := DaogetUserFromDb()
 	if err != nil{
-		//return user,errors.Wrap(err,"dao error")
-		return user,errors.Wrap(err, fmt.Sprintf("dao error : find user by id=%v", uid))
+		return user,errors.Wrap(err, fmt.Sprintf("dao error : find user by id=%+v", uid))
 	}
 	return user, nil
 }
 
 //biz层处理逻辑
 func BizFindUserById(uid uint) (*User,error) {
-	var user User
-	return user.DaoFindUserById(uid)
+	return DaoFindUserById(uid)
 }
 
-
 func main() {
-	user, err := BizFindUserById(1)
+	user, err := BizFindUserById(1234567)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			fmt.Printf("user not exists %+v\n", err)
 			return
 		}
 
-		fmt.Printf("query user detail failed: %+v\n", err)
+		fmt.Printf("query user failed: %+v\n", err)
 		return
 	}
 
-	fmt.Printf("user info: %+v\n", user)
+	fmt.Printf("query user success : user=%+v\n", user)
 
 }
