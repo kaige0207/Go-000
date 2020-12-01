@@ -64,7 +64,7 @@
 
 #### Unwrap
 
-包含另一个错误的错误可以实现Unwrap方法来返回所包含的底层错误
+包含另一个错误的错误可以实现Unwrap方法来返回所包含的底层错误，主要用于自定义错误包含底层错误时
 
 如果 e1.Unwrap() 返回e2，那么我们说e1 包装e2，可以展开e1 以获得e2
 
@@ -75,3 +75,15 @@ go1.13 errors 包中包含两个用于检查错误的新函数：Is 和 As
 errors.Is函数的行为类似于(sentinel error)的判等操作，而errors.As函数的行为类似于类型断言(type assertion)
 
 在处理包装错误(包含其他错误的错误)时，这些函数会考虑错误链中的所有错误
+
+
+
+
+
+### 问题文档
+
+第三课：	https://shimo.im/docs/vr6yDVPxRxXGKRDd
+
+第四课：	https://shimo.im/docs/R6gP8qyvWqJrgRCk
+
+相关文章：https://shimo.im/docs/GYvDrQT8qW8RgkGY

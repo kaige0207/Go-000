@@ -169,5 +169,6 @@ CAP原则又称CAP定理，指的是在一个分布式系统中，**一致性**�
 
 ## 问题文档
 
-1. https://shimo.im/docs/x8dxHkQRcdCHX8j3/read
-2. https://shimo.im/docs/WxJp66WCtjVwKDK3
+第一课：https://shimo.im/docs/x8dxHkQRcdCHX8j3/read
+
+第二课：https://shimo.im/docs/WxJp66WCtjVwKDK3
