@@ -27,7 +27,7 @@ func DaogetUserFromDb() (*User,error) {
 func DaoFindUserById(uid uint) (*User, error) {
 	user,err := DaogetUserFromDb()
 	if err != nil{
-		return user,errors.Wrap(err, fmt.Sprintf("dao error : find user by id=%+v", uid))
+		return user,errors.Wrap(err, fmt.Sprintf("dao error: find user by id=%+v", uid))
 	}
 	return user, nil
 }
