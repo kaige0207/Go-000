@@ -17,15 +17,15 @@ type User struct {
 }
 
 //执行数据库查询的函数
-func DaogetUserFromDb() (*User,error) {
+func getUserFromDb() (*User,error) {
 	//TODO
 	//省略数据库逻辑，直接返回sql.ErrNoRows
 	return &User{}, sql.ErrNoRows
 }
 
 //dao层处理逻辑
-func DaoFindUserById(uid uint) (*User, error) {
-	user,err := DaogetUserFromDb()
+func daoFindUserById(uid uint) (*User, error) {
+	user,err := getUserFromDb()
 	if err != nil{
 		return user,errors.Wrap(err, fmt.Sprintf("dao error: find user by id=%+v", uid))
 	}
@@ -33,12 +33,12 @@ func DaoFindUserById(uid uint) (*User, error) {
 }
 
 //biz层处理逻辑
-func BizFindUserById(uid uint) (*User,error) {
-	return DaoFindUserById(uid)
+func bizFindUserById(uid uint) (*User,error) {
+	return daoFindUserById(uid)
 }
 
 func main() {
-	user, err := BizFindUserById(1234567)
+	user, err := bizFindUserById(1234567)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			fmt.Printf("user not exists: %+v\n", err)

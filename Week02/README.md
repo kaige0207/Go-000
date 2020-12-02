@@ -87,3 +87,5 @@ errors.Is函数的行为类似于(sentinel error)的判等操作，而errors.As�
 第四课：	https://shimo.im/docs/R6gP8qyvWqJrgRCk
 
 相关文章：https://shimo.im/docs/GYvDrQT8qW8RgkGY
+
+全部链接：https://shimo.im/docs/MqLqgJAFXigaXvPt/read
