@@ -18,11 +18,11 @@ import (
 			1.通过 errgroup 分别启动端口号为 8081 和 8082 的两个 http server
 			2.注册了 linux signal 信号监听: Ctrl C 、终端退出、程序停止
 			3.通过 errgroup 实现了在收到 linux signal 中断信号或者客户段退出请求(addr/shutdown)后，两个服务正常退出和 linux signal 监听信号的停止
- */
+*/
 
 var (
-	addr1  = ":8081"
-	addr2  = ":8082"
+	addr1 = ":8081"
+	addr2 = ":8082"
 )
 
 type Handler struct {
@@ -34,14 +34,13 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-
 	group, _ := errgroup.WithContext(context.Background())
 
 	//Server1
 	chan1 := make(chan string)
 	mux1 := http.NewServeMux()
 	mux1.Handle("/", &Handler{key: "Server1"})
-	mux1.HandleFunc("/shutdown", func(w http.ResponseWriter,r *http.Request) {
+	mux1.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("Bye Bye Server1"))
 		chan1 <- "Shutdown"
 	})
@@ -60,56 +59,57 @@ func main() {
 	chan2 := make(chan string)
 	mux2 := http.NewServeMux()
 	mux2.Handle("/", &Handler{key: "Server2"})
-	mux2.HandleFunc("/shutdown", func(w http.ResponseWriter,r *http.Request) {
+	mux2.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("Bye Bye Server2"))
 		chan2 <- "Shutdown"
 	})
-
 	server2 := &http.Server{Addr: addr2, Handler: mux2}
 
 	group.Go(func() error {
 		log.Println("Server2 Start...")
 		err := server2.ListenAndServe()
-		if err == http.ErrServerClosed{
+		if err == http.ErrServerClosed {
 			return nil
 		}
 		return err
 	})
 
 	// Linux Signal
-	ch := make(chan os.Signal, 10)
+	ch := make(chan os.Signal, 1)
 	log.Println("Register Signal...")
-	signal.Notify(ch, syscall.SIGINT,  syscall.SIGHUP,syscall.SIGTERM)
+	signal.Notify(ch, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM)
 
 	group.Go(func() (err error) {
 		// 收到任何一个信号就关闭服务
 		select {
 		case sigMsg := <-ch:
-			fmt.Printf("Receive signal close: %v\n",sigMsg)
-		case serMsg1:= <-chan1:
-			fmt.Printf("Receive server1 request: %v\n",serMsg1)
-		case serMsg2:= <-chan2:
-			fmt.Printf("Receive server2 request: %v\n",serMsg2)
+			fmt.Printf("Receive signal close: %v\n", sigMsg)
+		case serMsg1 := <-chan1:
+			fmt.Printf("Receive server1 request: %v\n", serMsg1)
+		case serMsg2 := <-chan2:
+			fmt.Printf("Receive server2 request: %v\n", serMsg2)
 		}
 
-		if err := server1.Shutdown(context.Background());err != nil {
+		close(chan1)
+		if err := server1.Shutdown(context.Background()); err != nil {
 			return err
 		}
 		log.Println("Server1 closed!")
 
-		if err := server2.Shutdown(context.Background());err != nil{
+		close(chan2)
+		if err := server2.Shutdown(context.Background()); err != nil {
 			return err
 		}
 		log.Println("Server2 closed!")
 
 		signal.Stop(ch)
+		close(ch)
 		log.Println("Signal closed!")
 
 		return nil
 	})
 
-	if err := group.Wait(); err != nil{
-		fmt.Printf("shutdown errorr: %+v \n", err)
+	if err := group.Wait(); err != nil {
+		log.Printf("Shutdown errorr: %+v \n", err)
 	}
 }
-
