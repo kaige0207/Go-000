@@ -22,64 +22,62 @@ import (
 */
 
 var (
+	name1 = "Server1"
+	name2 = "Server2"
 	addr1 = ":8081"
 	addr2 = ":8082"
 )
 
 type Handler struct {
-	key string
+	name string
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	_, _ = w.Write([]byte("Hello " + h.key))
+	_, _ = w.Write([]byte("Hello " + h.name))
+}
+
+func handleServer(ch chan string, name, addr string) *http.Server {
+	mux := http.NewServeMux()
+	mux.Handle("/", &Handler{name: name})
+	//当客户端请求/shutdown时触发关闭服务器
+	mux.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("Bye Bye " + name))
+		ch <- "Shutdown"
+	})
+	return &http.Server{Addr: addr, Handler: mux}
+}
+
+func listenServer(server *http.Server) error {
+	err := server.ListenAndServe()
+	if err == http.ErrServerClosed {
+		return nil
+	}
+	return err
 }
 
 func main() {
 	group, _ := errgroup.WithContext(context.Background())
-
-	//Server1
 	chan1 := make(chan string)
-	mux1 := http.NewServeMux()
-	mux1.Handle("/", &Handler{key: "Server1"})
-	mux1.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("Bye Bye Server1"))
-		chan1 <- "Shutdown"
-	})
-	server1 := &http.Server{Addr: addr1, Handler: mux1}
-
-	group.Go(func() error {
-		log.Println("Server1 Start...")
-		err := server1.ListenAndServe()
-		if err == http.ErrServerClosed {
-			return nil
-		}
-		return err
-	})
-
-	//Server2
 	chan2 := make(chan string)
-	mux2 := http.NewServeMux()
-	mux2.Handle("/", &Handler{key: "Server2"})
-	mux2.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("Bye Bye Server2"))
-		chan2 <- "Shutdown"
-	})
-	server2 := &http.Server{Addr: addr2, Handler: mux2}
-
-	group.Go(func() error {
-		log.Println("Server2 Start...")
-		err := server2.ListenAndServe()
-		if err == http.ErrServerClosed {
-			return nil
-		}
-		return err
-	})
-
-	// Linux Signal
 	ch := make(chan os.Signal, 1)
+	server1 := handleServer(chan1, name1, addr1)
+	server2 := handleServer(chan2, name2, addr2)
 	log.Println("Register Signal...")
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM)
 
+	//启动并监听 Server1
+	group.Go(func() error {
+		log.Println("Server1 Start...")
+		return listenServer(server1)
+	})
+
+	//启动并监听 Server2
+	group.Go(func() error {
+		log.Println("Server2 Start...")
+		return listenServer(server2)
+	})
+
+	//当一个退出，全部注销退出
 	group.Go(func() (err error) {
 		// 收到任何一个信号就关闭服务
 		select {
