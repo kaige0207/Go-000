@@ -17,7 +17,8 @@ import (
 	代码：可以实现如下功能
 			1.通过 errgroup 分别启动端口号为 8081 和 8082 的两个 http server
 			2.注册了 linux signal 信号监听: Ctrl C 、终端退出、程序停止
-			3.通过 errgroup 实现了在收到 linux signal 中断信号或者客户段退出请求(addr/shutdown)后，两个服务正常退出和 linux signal 监听信号的停止
+			3.通过 errgroup 实现了一个服务退出，全部注销退出，
+			  在收到 signal 中断信号或者客户端退出请求(addr/shutdown)后，两个服务正常关闭、signal 信号监听停止
 */
 
 var (
