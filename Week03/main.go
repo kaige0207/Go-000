@@ -29,7 +29,7 @@ type Handler struct {
 	key string
 }
 
-func (h *Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write([]byte("Hello " + h.key))
 }
 
