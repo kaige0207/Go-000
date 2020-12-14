@@ -19,6 +19,7 @@ import (
 			2.注册了 linux signal 信号监听: Ctrl C 、终端退出、程序停止
 			3.通过 errgroup 实现了一个服务退出，全部注销退出，
 			  在收到 signal 中断信号或者客户端退出请求(addr/shutdown)后，两个服务正常关闭、signal 信号监听停止
+	助教批改意见：ctx还是需要的，不应该忽略，这个函数里应该能根据ctx来主动关闭server
 */
 
 var (
@@ -36,13 +37,13 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write([]byte("Hello " + h.name))
 }
 
-func handleServer(ch chan string, name, addr string) *http.Server {
+func handleServer(cancel context.CancelFunc, name, addr string) *http.Server {
 	mux := http.NewServeMux()
 	mux.Handle("/", &Handler{name: name})
 	//当客户端请求/shutdown时触发关闭服务器
 	mux.HandleFunc("/shutdown", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("Bye Bye " + name))
-		ch <- "Shutdown"
+		cancel()
 	})
 	return &http.Server{Addr: addr, Handler: mux}
 }
@@ -56,12 +57,11 @@ func listenServer(server *http.Server) error {
 }
 
 func main() {
-	group, _ := errgroup.WithContext(context.Background())
-	chan1 := make(chan string)
-	chan2 := make(chan string)
+	ctx, cancel := context.WithCancel(context.Background())
+	group, ctx := errgroup.WithContext(ctx)
 	ch := make(chan os.Signal, 1)
-	server1 := handleServer(chan1, name1, addr1)
-	server2 := handleServer(chan2, name2, addr2)
+	server1 := handleServer(cancel, name1, addr1)
+	server2 := handleServer(cancel, name2, addr2)
 	log.Println("Register Signal...")
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM)
 
@@ -83,19 +83,15 @@ func main() {
 		select {
 		case sigMsg := <-ch:
 			fmt.Printf("Receive signal close: %v\n", sigMsg)
-		case serMsg1 := <-chan1:
-			fmt.Printf("Receive server1 request: %v\n", serMsg1)
-		case serMsg2 := <-chan2:
-			fmt.Printf("Receive server2 request: %v\n", serMsg2)
+		case serMsg := <-ctx.Done():
+			fmt.Printf("Receive server close: %v\n", serMsg)
 		}
 
-		close(chan1)
 		if err := server1.Shutdown(context.Background()); err != nil {
 			return err
 		}
 		log.Println("Server1 closed!")
 
-		close(chan2)
 		if err := server2.Shutdown(context.Background()); err != nil {
 			return err
 		}
