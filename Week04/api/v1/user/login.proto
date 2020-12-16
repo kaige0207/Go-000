@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package api.v1.user;
+
+service UserService {
+rpc login (HelloRequest) returns (HelloResponse) {};
+}
+
+message HelloRequest {
+string username = 1;
+string password = 2;
+}
+
+message HelloResponse {
+string message = 1;
+}
