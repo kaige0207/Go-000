@@ -9,6 +9,7 @@ import (
 )
 
 type Config struct {
+	Server string
 	Port string
 	Mysql MysqlConfig
 }

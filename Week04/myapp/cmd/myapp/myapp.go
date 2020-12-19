@@ -7,12 +7,15 @@ import (
 	"log"
 	"net"
 )
-
-var port = configreader.GetConfig().Port
+var (
+	server = configreader.GetConfig().Server
+	port = configreader.GetConfig().Port
+	)
 
 func main() {
 	userService := initService()
-	lis, err := net.Listen("tcp", port)
+	addr := server + port
+	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -21,4 +24,5 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+	log.Println("Server Start...")
 }
