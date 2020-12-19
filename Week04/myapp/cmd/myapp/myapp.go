@@ -14,7 +14,7 @@ var (
 
 func main() {
 	userService := initService()
-	addr := server + port
+	addr := server + ":" + port
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
