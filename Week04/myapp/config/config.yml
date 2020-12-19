@@ -1,0 +1,6 @@
+port: 8080
+mysql:
+  url: "127.0.0.1:3306"
+  username:  "root"
+  password: "root"
+  database: "test"
