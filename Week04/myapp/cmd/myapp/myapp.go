@@ -7,10 +7,11 @@ import (
 	"log"
 	"net"
 )
+
 var (
 	server = configreader.GetConfig().Server
-	port = configreader.GetConfig().Port
-	)
+	port   = configreader.GetConfig().Port
+)
 
 func main() {
 	userService := initService()
@@ -21,8 +22,8 @@ func main() {
 	}
 	s := grpc.NewServer()
 	pb.RegisterUserServiceServer(s, &userService)
+	log.Println("Server Start...")
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
-	log.Println("Server Start...")
 }

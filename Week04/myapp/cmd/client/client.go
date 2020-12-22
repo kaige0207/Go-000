@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	address     = "localhost:8080"
+	address = "localhost:8080"
 )
 
 func main() {
@@ -24,16 +24,15 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.Login(ctx, &pb.UserRequest{Username: "jack",Password:"jack"})
+	r, err := c.Login(ctx, &pb.UserRequest{Username: "jack", Password: "1234"})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Printf("Login message: %s", r.GetMessage())
 
-	r, err = c.Register(ctx, &pb.UserRequest{Username: "jack",Password:"jack"})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
-	}
-	log.Printf("Register message: %s", r.GetMessage())
+	//r, err = c.Register(ctx, &pb.UserRequest{Username: "jack",Password:"jack"})
+	//if err != nil {
+	//	log.Fatalf("could not greet: %v", err)
+	//}
+	//log.Printf("Register message: %s", r.GetMessage())
 }
-

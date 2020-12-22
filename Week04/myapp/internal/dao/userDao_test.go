@@ -11,12 +11,11 @@ func TestGetUserByName(t *testing.T) {
 	fmt.Println(dao.GetUserByName("nick"))
 	fmt.Println(dao.GetUserByName("jacky"))
 	fmt.Println(dao.GetUserByName("xxx"))
-	fmt.Println(dao.GetUserByName("aaa"))
+	fmt.Println(dao.GetUserByName("kaige"))
 }
-
 
 func TestAddUser(t *testing.T) {
 	dao := &UserDao{}
-	user := &data.User{Username:"aaa",Password:"aaa"}
+	user := &data.User{Username: "aaa", Password: "aaa"}
 	fmt.Println(dao.AddUser(user))
 }
