@@ -23,7 +23,7 @@ func (dao *UserDao) GetUserByName(username string) (user *data.User, err error) 
 
 	var id uint
 	var password string
-	row := db.QueryRow("SELECT id,username,password FROM users WHERE username = ?", username)
+	row := db.QueryRow("SELECT id,username,password FROM user WHERE username = ?", username)
 	err = row.Scan(&id, &username, &password)
 
 	if err != nil {

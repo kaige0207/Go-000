@@ -32,14 +32,12 @@ func main() {
 		}
 		log.Printf("Login message: %s", r.GetMessage())
 		if r.GetMessage() == "该用户未注册！" {
-			group.Go(func() error {
-				r, err = c.Register(ctx, &pb.UserRequest{Username: "jack", Password: "jack"})
-				if err != nil {
-					log.Fatalf("could not greet: %v", err)
-				}
-				log.Printf("Register message: %s", r.GetMessage())
-				return err
-			})
+			r, err = c.Register(ctx, &pb.UserRequest{Username: "jack", Password: "jack"})
+			if err != nil {
+				log.Fatalf("could not greet: %v", err)
+			}
+			log.Printf("Register message: %s", r.GetMessage())
+			return err
 		}
 		return err
 	})
