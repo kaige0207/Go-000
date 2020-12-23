@@ -18,26 +18,24 @@ var (
 func main() {
 	userService := initService()
 	addr := server + ":" + port
-	ctx, cancel := context.WithCancel(context.Background())
-	group, ctx := errgroup.WithContext(ctx)
+	group, ctx := errgroup.WithContext(context.Background())
 	group.Go(func() error {
-
 		lis, err := net.Listen("tcp", addr)
 		if err != nil {
-			log.Fatalf("failed to listen: %v", err)
+			log.Fatalf("failed to listen: %+v", err)
 		}
 		s := grpc.NewServer()
 		pb.RegisterUserServiceServer(s, &userService)
 		log.Println("Server Start...")
 		if err := s.Serve(lis); err != nil {
-			log.Fatalf("failed to serve: %v", err)
-			cancel()
+			<-ctx.Done()
+			log.Fatalf("failed to serve: %+v", err)
 		}
-		return nil
+		return err
 	})
 
 	if err := group.Wait(); err != nil {
-		log.Fatalf("error in serve: %v", err)
+		log.Fatalf("error in serve: %+v", err)
 	}
 
 }

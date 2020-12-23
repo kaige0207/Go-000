@@ -11,6 +11,7 @@ import (
 )
 
 type UserDao struct {
+	user data.User
 }
 
 func (dao *UserDao) GetUserByName(username string) (user *data.User, err error) {
@@ -32,8 +33,10 @@ func (dao *UserDao) GetUserByName(username string) (user *data.User, err error) 
 		return nil, errors.Wrap(err, err.Error())
 	}
 
-	user = &data.User{Id: id, Username: username, Password: password}
-	return user, row.Err()
+	dao.user.Id = id
+	dao.user.Username = username
+	dao.user.Password = password
+	return &dao.user, row.Err()
 }
 
 func (dao *UserDao) AddUser(user *data.User) error {
