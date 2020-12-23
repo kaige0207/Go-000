@@ -6,6 +6,7 @@ import (
 	"github.com/kaige0207/Go-000/Week04/comment-job/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
+	"time"
 )
 
 type SubjectDao struct {
@@ -42,8 +43,8 @@ func (c *SubjectDao) insertSubject(sub *data.Subject) error {
 		sub.AllCount,
 		sub.State,
 		sub.Attrs,
-		sub.CreateTime,
-		sub.UpdateTime)
+		time.Now(),
+		time.Now())
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("dao error: insert data failed: %+v", err.Error()))
 	}

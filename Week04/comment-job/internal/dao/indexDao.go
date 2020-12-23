@@ -6,6 +6,7 @@ import (
 	"github.com/kaige0207/Go-000/Week04/comment-job/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
+	"time"
 )
 
 type IndexDao struct {
@@ -50,8 +51,8 @@ func (c *IndexDao) insertIndex(ind *data.Index) error {
 		ind.Hate,
 		ind.State,
 		ind.Attrs,
-		ind.CreateTime,
-		ind.UpdateTime)
+		time.Now(),
+		time.Now())
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("dao error: insert data failed: %+v", err.Error()))
 	}

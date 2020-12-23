@@ -6,6 +6,7 @@ import (
 	"github.com/kaige0207/Go-000/Week04/comment-job/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
+	"time"
 )
 
 type ContentDao struct {
@@ -40,8 +41,8 @@ func (c *ContentDao) insertContent(con *data.Content) error {
 		con.Device,
 		con.Message,
 		con.Meta,
-		con.CreateTime,
-		con.UpdateTime,
+		time.Now(),
+		time.Now(),
 	)
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("dao error: insert data failed: %+v", err.Error()))
