@@ -18,7 +18,7 @@ var (
 func main() {
 	userService := initService()
 	addr := server + ":" + port
-	ctx,cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	group, ctx := errgroup.WithContext(ctx)
 	group.Go(func() error {
 
@@ -36,8 +36,8 @@ func main() {
 		return nil
 	})
 
-	if err := group.Wait();err != nil {
+	if err := group.Wait(); err != nil {
 		log.Fatalf("error in serve: %v", err)
 	}
-	
+
 }

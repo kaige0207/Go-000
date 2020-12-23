@@ -23,7 +23,7 @@ type MysqlConfig struct {
 //GetConfig 获取配置数据
 func GetConfig() Config {
 	config := Config{}
-	content, err := ioutil.ReadFile("/home/kaige/codes/source-github/go/src/github.com/kaige0207/Go-000/Week04/myapp/config/config.yml")
+	content, err := ioutil.ReadFile("Week04/account/config/config.yml")
 	//content, err := ioutil.ReadFile("./config/config.yml")
 	if err != nil {
 		log.Fatalf("解析config.yaml读取错误: %v", err)
