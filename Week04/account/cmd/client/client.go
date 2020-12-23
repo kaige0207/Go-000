@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"golang.org/x/sync/errgroup"
 	"log"
 	"time"
 
@@ -23,16 +24,28 @@ func main() {
 	c := pb.NewUserServiceClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+	group, ctx := errgroup.WithContext(ctx)
+	group.Go(func() error {
+		r, err := c.Login(ctx, &pb.UserRequest{Username: "jack", Password: "1234"})
+		if err != nil {
+			log.Fatalf("could not greet: %v", err)
+		}
+		log.Printf("Login message: %s", r.GetMessage())
+		if r.GetMessage() == "该用户未注册！" {
+			group.Go(func() error {
+				r, err = c.Register(ctx, &pb.UserRequest{Username: "jack", Password: "jack"})
+				if err != nil {
+					log.Fatalf("could not greet: %v", err)
+				}
+				log.Printf("Register message: %s", r.GetMessage())
+				return err
+			})
+		}
+		return err
+	})
 
-	r, err := c.Login(ctx, &pb.UserRequest{Username: "jack", Password: "1234"})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+	if err := group.Wait(); err != nil {
+		log.Fatalf("request error: %v\n", err)
 	}
-	log.Printf("Login message: %s", r.GetMessage())
 
-	//r, err = c.Register(ctx, &pb.UserRequest{Username: "jack",Password:"jack"})
-	//if err != nil {
-	//	log.Fatalf("could not greet: %v", err)
-	//}
-	//log.Printf("Register message: %s", r.GetMessage())
 }
