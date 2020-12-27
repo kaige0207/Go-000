@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/pkg/configreader"
+	"github.com/kaige0207/Go-000/Week04/comment-job/internal/pkg/configreader"
 )
 
 var (

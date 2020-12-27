@@ -1,4 +1,4 @@
-package data
+package dao
 
 import (
 	"github.com/kaige0207/Go-000/Week04/comment-job/internal/data"
@@ -16,5 +16,5 @@ func TestInsertContent(t *testing.T) {
 		Meta:        "",
 	}
 	var dao = ContentDao{con}
-	dao.insertContent(&dao.content)
+	_ = dao.insertContent(&dao.content)
 }

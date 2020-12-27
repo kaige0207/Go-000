@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f48e1296-c9fc-40bd-b739-71134b4e681f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/commentDao.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/commentDao_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week04/comment-service/internal/dao/commentDao.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week04/comment-service/internal/dao/commentDao_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Week04/comment-service/internal/data/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/contentDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/contentDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/contentDao_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/contentDao_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/indexDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/indexDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/indexDao_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/indexDao_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/subjectDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/subjectDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/dao/subjectDao_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/dao/subjectDao_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-job/internal/pkg/mysqldb/mysqldb.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-job/internal/pkg/mysqldb/mysqldb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/internal/dao/contentDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/internal/dao/contentDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/internal/dao/indexDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/internal/dao/indexDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/internal/dao/subjectDao.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/internal/dao/subjectDao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Week04/comment-service/internal/pkg/mysqldb/mysqldb.go" beforeDir="false" afterPath="$PROJECT_DIR$/Week04/comment-service/internal/pkg/mysqldb/mysqldb.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///opt/software/dev/go/go1.15" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1mBEGVqm6CEbKNN95bbjOEDVluh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable..is.expanded" value="false" />
+    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="RunManager" selected="Go Test.TestSendComment in github.com/kaige0207/Go-000/Week04/comment/internal/dao">
+    <configuration name="TestReceiveComment in github.com/kaige0207/Go-000/Week04/comment-job/internal/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Go-000" />
+      <working_directory value="$PROJECT_DIR$/Week04/comment-job/internal/dao" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/kaige0207/Go-000/Week04/comment-job/internal/dao" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestReceiveComment\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSendComment in github.com/kaige0207/Go-000/Week04/comment/internal/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Go-000" />
+      <working_directory value="$PROJECT_DIR$/Week04/comment-service/internal/dao" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/kaige0207/Go-000/Week04/comment/internal/dao" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestSendComment\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestSendComment in github.com/kaige0207/Go-000/Week04/comment/internal/dao" />
+        <item itemvalue="Go Test.TestReceiveComment in github.com/kaige0207/Go-000/Week04/comment-job/internal/dao" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <environment>
+      <map>
+        <entry key="GOPROXY" value="https://goproxy.io" />
+      </map>
+    </environment>
+  </component>
+</project>
