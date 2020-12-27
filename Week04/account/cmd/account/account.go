@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	pb "github.com/kaige0207/Go-000/Week04/myapp/api/v1/user"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/pkg/configreader"
+	pb "github.com/kaige0207/Go-000/Week04/account/api/v1/user"
+	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/configreader"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"log"

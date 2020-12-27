@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/kaige0207/Go-000/Week04/myapp/api/v1/user"
+	pb "github.com/kaige0207/Go-000/Week04/account/api/v1/user"
 	"google.golang.org/grpc"
 )
 

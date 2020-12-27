@@ -2,10 +2,10 @@ package service
 
 import (
 	"context"
-	pb "github.com/kaige0207/Go-000/Week04/myapp/api/v1/user"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/dao"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/data"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/pkg/errortype"
+	pb "github.com/kaige0207/Go-000/Week04/account/api/v1/user"
+	"github.com/kaige0207/Go-000/Week04/account/internal/dao"
+	"github.com/kaige0207/Go-000/Week04/account/internal/data"
+	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/errortype"
 	"github.com/pkg/errors"
 	"log"
 )
@@ -19,7 +19,7 @@ func (s *UserService) Login(ctx context.Context, in *pb.UserRequest) (*pb.UserRe
 
 	log.Printf("Received: %v,%v", in.GetUsername(), in.GetPassword())
 	user, err := s.UserDao.GetUserByName(in.GetUsername())
-	var e = errortype.New(404,"")
+	var e = errortype.New(404, "")
 	if err != nil {
 		if errors.As(err, &e) {
 			return &pb.UserReply{Message: "该用户未注册！"}, nil

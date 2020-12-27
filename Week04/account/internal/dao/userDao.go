@@ -3,9 +3,9 @@ package dao
 import (
 	"database/sql"
 	"fmt"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/data"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/pkg/errortype"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/pkg/mysqldb"
+	"github.com/kaige0207/Go-000/Week04/account/internal/data"
+	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/errortype"
+	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
 )

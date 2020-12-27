@@ -6,8 +6,8 @@
 package main
 
 import (
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/dao"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/service"
+	"github.com/kaige0207/Go-000/Week04/account/internal/dao"
+	"github.com/kaige0207/Go-000/Week04/account/internal/service"
 )
 
 // Injectors from wire.go:

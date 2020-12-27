@@ -2,7 +2,7 @@ package dao
 
 import (
 	"fmt"
-	"github.com/kaige0207/Go-000/Week04/myapp/internal/data"
+	"github.com/kaige0207/Go-000/Week04/account/internal/data"
 	"testing"
 )
 
