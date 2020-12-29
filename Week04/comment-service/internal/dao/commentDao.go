@@ -19,7 +19,7 @@ func (c *CommentDao) sendComment(com *data.Comment) error {
 	config.Producer.Return.Successes = true
 
 	msg := sarama.ProducerMessage{Topic: "Comment"}
-	msg.Partition = int32(com.Platform)
+	msg.Partition = com.Platform
 	//msg.Key = sarama.StringEncoder(string(com.Platform))
 	msg.Value = sarama.StringEncoder(com.Message)
 	producer, err := sarama.NewSyncProducer([]string{"localhost:9092"}, config)

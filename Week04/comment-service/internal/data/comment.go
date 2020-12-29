@@ -4,7 +4,7 @@ import "time"
 
 // Comment　用来封装评论在Kafka中传递的消息实体
 type Comment struct {
-	Platform    int8      `平台:platform`
+	Platform    int32     `平台:platform`
 	CommentId   int64     `主键:comment_id`
 	AtMemberIds string    `at列表:at_member_ids`
 	Ip          int64     `ip:ip`

@@ -1,0 +1,24 @@
+syntax = "proto3";
+package api.v1.comment;
+
+service Comment{
+  rpc SendMassage(CommentRequest) returns (CommentReplay) {}
+}
+
+message CommentRequest {
+  int32  Platform = 1;
+  string AtMemberIds = 2;
+  int64  Ip = 3;
+  string Device = 4;
+  string Message = 5;
+  string Meta = 6;
+  int32  Floor = 7;
+  int32  Count = 8;
+  int32  RootCount = 9;
+  int32  Like = 10;
+  int32  Hate = 11;
+}
+
+message CommentReplay {
+  string massage = 1;
+}
