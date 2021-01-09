@@ -1,4 +1,4 @@
-module github.com/kaige0207/Go-000/Week04/account
+module github.com/kaige0207/Go-000/Week05/account
 
 go 1.15
 

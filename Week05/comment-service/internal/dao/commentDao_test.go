@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/kaige0207/Go-000/Week04/comment/internal/data"
+	"github.com/kaige0207/Go-000/Week05/comment/internal/data"
 	"testing"
 	"time"
 )

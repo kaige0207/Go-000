@@ -2,10 +2,10 @@ package service
 
 import (
 	"context"
-	pb "github.com/kaige0207/Go-000/Week04/account/api/v1/user"
-	"github.com/kaige0207/Go-000/Week04/account/internal/dao"
-	"github.com/kaige0207/Go-000/Week04/account/internal/data"
-	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/errortype"
+	pb "github.com/kaige0207/Go-000/Week05/account/api/v1/user"
+	"github.com/kaige0207/Go-000/Week05/account/internal/dao"
+	"github.com/kaige0207/Go-000/Week05/account/internal/data"
+	"github.com/kaige0207/Go-000/Week05/account/internal/pkg/errortype"
 	"github.com/pkg/errors"
 	"log"
 )

@@ -3,11 +3,12 @@ package dao
 import (
 	"database/sql"
 	"fmt"
-	"github.com/kaige0207/Go-000/Week04/account/internal/data"
-	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/errortype"
-	"github.com/kaige0207/Go-000/Week04/account/internal/pkg/mysqldb"
+	"github.com/kaige0207/Go-000/Week05/account/internal/data"
+	"github.com/kaige0207/Go-000/Week05/account/internal/pkg/errortype"
+	"github.com/kaige0207/Go-000/Week05/account/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
+	"time"
 )
 
 type UserDao struct {
@@ -46,7 +47,7 @@ func (dao *UserDao) AddUser(user *data.User) error {
 		return errors.Wrap(err, fmt.Sprintf("dao error: failed to open database: %+v", err.Error()))
 	}
 
-	_, err = db.Exec("INSERT INTO user(username,password) VALUES(?, ?)", user.Username, user.Password)
+	_, err = db.Exec("INSERT INTO user(username,password,createtime,updtetime) VALUES(?, ?, ?, ?)", user.Username, user.Password, time.Now(), time.Now())
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("dao error: insert data failed: %+v", err.Error()))
 	}

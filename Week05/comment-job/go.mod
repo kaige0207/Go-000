@@ -1,4 +1,4 @@
-module github.com/kaige0207/Go-000/Week04/comment-job
+module github.com/kaige0207/Go-000/Week05/comment-job
 
 go 1.15
 

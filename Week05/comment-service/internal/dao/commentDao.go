@@ -2,7 +2,7 @@ package dao
 
 import (
 	"fmt"
-	"github.com/kaige0207/Go-000/Week04/comment/internal/data"
+	"github.com/kaige0207/Go-000/Week05/comment/internal/data"
 
 	"github.com/Shopify/sarama"
 )

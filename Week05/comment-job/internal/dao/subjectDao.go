@@ -2,8 +2,8 @@ package dao
 
 import (
 	"fmt"
-	"github.com/kaige0207/Go-000/Week04/comment-job/internal/data"
-	"github.com/kaige0207/Go-000/Week04/comment-job/internal/pkg/mysqldb"
+	"github.com/kaige0207/Go-000/Week05/comment-job/internal/data"
+	"github.com/kaige0207/Go-000/Week05/comment-job/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
 	"log"
 	"time"
