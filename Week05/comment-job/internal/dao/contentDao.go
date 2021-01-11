@@ -2,6 +2,7 @@ package dao
 
 import (
 	"fmt"
+	"github.com/garyburd/redigo/redis"
 	"github.com/kaige0207/Go-000/Week05/comment-job/internal/data"
 	"github.com/kaige0207/Go-000/Week05/comment-job/internal/pkg/mysqldb"
 	"github.com/pkg/errors"
@@ -44,9 +45,16 @@ func (c *ContentDao) insertContent(con *data.Content) error {
 		time.Now(),
 		time.Now(),
 	)
+
+	conn, err := redis.Dial("tcp", "localhost:6379")
+	if err != nil {
+		log.Println("connect redis error :", err.Error())
+		panic(err)
+	}
+	defer conn.Close()
+	_, err = conn.Do("hset", con.CommentId, "AtMemberIds", con.AtMemberIds, "ip", con.Ip, "Platform", con.Platform, "Device", con.Device, "Message", con.Message, "Meta", con.Meta)
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("dao error: insert data failed: %+v", err.Error()))
 	}
-
 	return nil
 }
